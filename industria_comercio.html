@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos de Industria y Comercio - Guerrero Construction</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==========================================================================
+           1. RESET Y ESTILOS GENERALES
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body, html {
+            background-color: #ffffff;
+            color: #111111;
+            scroll-behavior: smooth;
+        }
+
+        /* ==========================================================================
+           2. CABECERA / NAVBAR DEFINITIVA (SIN BOTÓN CONTACTO)
+           ========================================================================== */
+        .main-header {
+            background-color: #004ba0; /* Azul insignia corporativo */
+            width: 100%;
+            padding: 0 8%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 90px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-box {
+            border: 2px solid #ffffff;
+            padding: 6px 16px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-item {
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .nav-item > a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item > a:hover {
+            color: #fcb900; /* Amarillo corporativo al pasar el cursor */
+        }
+
+        .dropdown-arrow::after {
+            content: ' ▾';
+            font-size: 0.8rem;
+        }
+
+        /* SUBMENÚ DESPLEGABLE (PROYECTOS) */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            min-width: 240px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.12);
+            list-style: none;
+            padding: 12px 0;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu li a {
+            color: #111111;
+            text-decoration: none;
+            display: block;
+            padding: 12px 20px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: #f5f5f5;
+            color: #004ba0;
+        }
+
+        /* ==========================================================================
+           3. BANNER DE TÍTULO DE LA PÁGINA (HERO)
+           ========================================================================== */
+        .page-banner {
+            position: relative;
+            height: 45vh;
+            min-height: 300px;
+            /* Imagen de fondo local (debe estar en la misma carpeta o subcarpeta) */
+            background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
+                        url(1.png) no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 8%;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .banner-content h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #333333;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        /* ==========================================================================
+           4. INTRODUCCIÓN Y TEXTO DESCRIPTIVO
+           ========================================================================== */
+        .intro-section {
+            padding: 60px 8% 30px 8%;
+            text-align: center;
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+
+        .intro-section p {
+            font-size: 1.2rem;
+            color: #444444;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* ==========================================================================
+           5. SECCIÓN DE OBRA ÚNICA (CENTRO COMERCIAL ALTARIA)
+           ========================================================================== */
+        .single-project-section {
+            padding: 10px 8% 100px 8%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-showcase-container {
+            position: relative;
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        /* Contenedor principal de la imagen */
+        .project-main-image {
+            width: 100%;
+            height: auto;
+            max-height: 650px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Superposición de datos del proyecto */
+        .project-overlay-details {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            background-color: rgba(252, 185, 0, 0.95); /* Amarillo corporativo con ligera opacidad */
+            padding: 30px;
+            max-width: 550px;
+            color: #111111;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border-radius: 4px;
+        }
+
+        .project-overlay-details h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+            color: #111111;
+        }
+
+        .project-info-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+
+        .project-info-text p {
+            margin-bottom: 8px;
+        }
+
+        .project-info-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ==========================================================================
+           6. PIE DE PÁGINA DEFINITIVO (ULTRA-MINIMALISTA)
+           ========================================================================== */
+        .main-footer {
+            background-color: #111111; /* Fondo oscuro premium */
+            color: #ffffff;
+            padding: 60px 8% 30px 8%;
+            font-size: 0.9rem;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 50px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 40px;
+        }
+
+        /* Columna Brand */
+        .footer-column-brand {
+            flex: 1.5;
+            min-width: 280px;
+        }
+
+        .footer-column-brand h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .footer-column-brand p {
+            color: #aaaaaa;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* Columna Contacto */
+        .footer-column-contact {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-column-contact h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-column-contact h4::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 35px;
+            height: 3px;
+            background-color: #fcb900;
+        }
+
+        .footer-contact-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .footer-contact-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #aaaaaa;
+            font-weight: 300;
+        }
+
+        .footer-contact-list li i {
+            color: #fcb900;
+            font-size: 1.1rem;
+            width: 20px;
+        }
+
+        .footer-contact-list li a {
+            color: #aaaaaa;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-contact-list li a:hover {
+            color: #ffffff;
+        }
+
+        /* Barra Inferior */
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 30px;
+            color: #666666;
+            font-size: 0.8rem;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-bottom p a {
+            color: #666666;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-bottom p a:hover {
+            color: #aaaaaa;
+        }
+
+        /* ==========================================================================
+           7. RESPONSIVIDAD AJUSTADA
+           ========================================================================== */
+        @media (max-width: 900px) {
+            .project-overlay-details {
+                position: relative;
+                top: 0;
+                left: 0;
+                max-width: 100%;
+                border-radius: 0 0 8px 8px;
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                justify-content: center;
+                gap: 15px;
+                height: auto;
+                padding: 20px 0;
+            }
+
+            .nav-menu {
+                gap: 25px;
+            }
+
+            .dropdown-menu {
+                position: static;
+                min-width: 100%;
+                box-shadow: none;
+                background-color: #0d3875;
+                border-radius: 6px;
+                margin-top: 5px;
+            }
+
+            .dropdown-menu li a {
+                color: #ffffff;
+                text-align: center;
+            }
+
+            .banner-content h1 {
+                font-size: 1.9rem;
+            }
+
+            .intro-section p {
+                font-size: 1rem;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                gap: 35px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="logo-container">
+                <a href="index.html" class="logo-box">Guerrero Construction</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="dropdown-arrow">Proyectos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="industria-comercio.html">Industria y Comercio</a></li>
+                        <li><a href="vivienda.html">Vivienda</a></li>
+                        <li><a href="infraestructura.html">Infraestructura</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="nosotros.html">Nosotros</a></li>
+                <li class="nav-item"><a href="blog.html">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-banner">
+        <div class="banner-content">
+            <h1>Proyectos de Industria y Comercio</h1>
+        </div>
+    </section>
+
+    <section class="intro-section">
+        <p>Enfocados en proyectos comerciales innovadores, desarrollamos espacios que fortalecen los negocios y brindan experiencias únicas, desde centros comerciales hasta oficinas y locales especializados.</p>
+    </section>
+
+    <section class="single-project-section">
+        <div class="project-showcase-container">
+            
+            <img src="centro-comercial-altaria.jpg" alt="Centro Comercial Altaria" class="project-main-image">
+            
+            <div class="project-overlay-details">
+                <h2>Centro Comercial Altaria</h2>
+                <div class="project-info-text">
+                    <p><strong>Cliente:</strong> Grupo Aryba</p>
+                    <p><strong>Obra:</strong> Cisterna, Módulo La Comer, Jardineras, Instalaciones, Cuarto de Máquinas y Cimentación de Módulos, Canopys</p>
+                    <p><strong>Periodo de Ejecución:</strong> Junio 2018 a Febrero 2020</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            
+            <div class="footer-column-brand">
+                <h3>Guerrero Construction</h3>
+                <p>Edificando con eficiencia, calidad e innovación soluciones estructurales que trascienden fronteras.</p>
+            </div>
+
+            <div class="footer-column-contact">
+                <h4>Contacto</h4>
+                <ul class="footer-contact-list">
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <a href="mailto:guerrerosconstructionss@gmail.com">guerrerosconstructionss@gmail.com</a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-phone"></i>
+                        <a href="tel:4492897128">449 289 7128</a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>Aguascalientes, México</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Guerrero Construction. Todos los derechos reservados.</p>
+            <p><a href="privacidad.html">Aviso de Privacidad</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>

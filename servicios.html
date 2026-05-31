@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios y Precios - Guerrero Construction</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==========================================================================
+           1. RESET Y ESTILOS GENERALES
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body, html {
+            background-color: #ffffff;
+            color: #111111;
+            scroll-behavior: smooth;
+        }
+
+        /* ==========================================================================
+           2. CABECERA / NAVBAR DEFINITIVA
+           ========================================================================== */
+        .main-header {
+            background-color: #004ba0;
+            width: 100%;
+            padding: 0 8%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 90px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-box {
+            border: 2px solid #ffffff;
+            padding: 6px 16px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-item {
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .nav-item > a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item > a:hover {
+            color: #fcb900;
+        }
+
+        .dropdown-arrow::after {
+            content: ' ▾';
+            font-size: 0.8rem;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            min-width: 240px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.12);
+            list-style: none;
+            padding: 12px 0;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu li a {
+            color: #111111;
+            text-decoration: none;
+            display: block;
+            padding: 12px 20px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: #f5f5f5;
+            color: #004ba0;
+        }
+
+        /* ==========================================================================
+           3. SECCIÓN DE SERVICIOS Y SECCIÓN INTERNA
+           ========================================================================== */
+        .services-section {
+            padding: 60px 8% 80px 8%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .services-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #111111;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .disclaimer-box {
+            background-color: #f9f9f9;
+            border-left: 4px solid #fcb900;
+            padding: 20px;
+            margin-bottom: 40px;
+            border-radius: 4px;
+        }
+
+        .disclaimer-box p {
+            font-size: 1rem;
+            color: #444444;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        /* Buscador Infiltrado */
+        .search-wrapper {
+            margin-bottom: 40px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 1rem;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            background-color: #ffffff;
+            color: #111111;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-bar:focus {
+            border-color: #004ba0;
+        }
+
+        /* Grid de Tarjetas de Catálogo */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .service-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e5e5;
+            border-radius: 4px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-color: #004ba0;
+        }
+
+        .service-num {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #dddddd;
+        }
+
+        .service-name {
+            font-size: 1.15rem;
+            color: #111111;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            padding-right: 35px;
+            letter-spacing: 0.5px;
+        }
+
+        .pricing-row {
+            border-top: 1px solid #f0f0f0;
+            padding-top: 20px;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+        }
+
+        .price-tag {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #004ba0;
+        }
+
+        .unit-tag {
+            font-size: 0.85rem;
+            color: #666666;
+            font-weight: 400;
+            text-transform: lowercase;
+        }
+
+        /* Estilo para items que requieren presupuesto formal */
+        .custom-quote .price-tag {
+            font-size: 1.25rem;
+            color: #666666;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        /* Contenedor cuando no hay resultados */
+        .empty-search {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 50px 0;
+            color: #666666;
+            font-size: 1.1rem;
+            display: none;
+        }
+
+        /* ==========================================================================
+           7. PIE DE PÁGINA (ULTRA-MINIMALISTA)
+           ========================================================================== */
+        .main-footer {
+            background-color: #111111;
+            color: #ffffff;
+            padding: 60px 8% 30px 8%;
+            font-size: 0.9rem;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 50px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 40px;
+        }
+
+        .footer-column-brand {
+            flex: 1.5;
+            min-width: 280px;
+        }
+
+        .footer-column-brand h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .footer-column-brand p {
+            color: #aaaaaa;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .footer-column-contact {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-column-contact h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-column-contact h4::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 35px;
+            height: 3px;
+            background-color: #fcb900;
+        }
+
+        .footer-contact-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .footer-contact-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #aaaaaa;
+            font-weight: 300;
+        }
+
+        .footer-contact-list li i {
+            color: #fcb900;
+            font-size: 1.1rem;
+            width: 20px;
+        }
+
+        .footer-contact-list li a {
+            color: #aaaaaa;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-contact-list li a:hover {
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 30px;
+            color: #666666;
+            font-size: 0.8rem;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-bottom p a {
+            color: #666666;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-bottom p a:hover {
+            color: #aaaaaa;
+        }
+
+        /* ==========================================================================
+           8. RESPONSIVIDAD AJUSTADA
+           ========================================================================== */
+        @media (max-width: 900px) {
+            .project-overlay-details, .carousel-overlay-details {
+                position: relative;
+                top: 0;
+                left: 0;
+                max-width: 100%;
+                border-radius: 0;
+                padding: 25px;
+            }
+            .carousel-wrapper {
+                height: auto;
+            }
+            .carousel-container {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                justify-content: center;
+                gap: 15px;
+                height: auto;
+                padding: 20px 0;
+            }
+
+            .nav-menu { gap: 25px; }
+
+            .dropdown-menu {
+                position: static;
+                min-width: 100%;
+                box-shadow: none;
+                background-color: #0d3875;
+                border-radius: 6px;
+                margin-top: 5px;
+            }
+
+            .dropdown-menu li a {
+                color: #ffffff;
+                text-align: center;
+            }
+
+            .services-section { padding: 40px 5%; }
+            .services-grid { grid-template-columns: 1fr; }
+            .footer-container { flex-direction: column; gap: 35px; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="logo-container">
+                <a href="index.html" class="logo-box">Guerrero Construction</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="dropdown-arrow">Proyectos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="page1.html">Industria y Comercio</a></li>
+                        <li><a href="page2.html">Vivienda</a></li>
+                        <li><a href="page3.html">Infraestructura</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="servicios.html">Servicios</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="services-section">
+        <h2 class="services-title">Catálogo de Mano de Obra</h2>
+        
+        <div class="disclaimer-box">
+            <p><strong>Costo solo de mano de obra:</strong> Los precios descritos a continuación reflejan los costos operativos estándar por unidad de medida estándar. No incluyen suministro de materiales, acarreos fuera de obra ni uso de equipo mayor pesado.</p>
+        </div>
+
+        <div class="search-wrapper">
+            <input type="text" id="catalogSearch" class="search-bar" placeholder="Buscar un servicio específico de la lista...">
+        </div>
+
+        <div class="services-grid" id="catalogGrid">
+            
+            <div class="service-card">
+                <span class="service-num">01</span>
+                <h3 class="service-name">Pegar tabique</h3>
+                <div class="pricing-row">
+                    <span class="price-tag">$250</span>
+                    <span class="unit-tag">por m²</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <span class="service-num">02</span>
+                <h3 class="service-name">Hacer cimentación</h3>
+                <div class="pricing-row">
+                    <span class="price-tag">$300</span>
+                    <span class="unit-tag">por m²</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <span class="service-num">03</span>
+                <h3 class="service-name">Colado de losa</h3>
+                <div class="pricing-row">
+                    <span class="price-tag">$500</span>
+                    <span class="unit-tag">por m²</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <span class="service-num">04</span>
+                <h3 class="service-name">Excavación de terreno</h3>
+                <div class="pricing-row">
+                    <span class="price-tag">$150</span>
+                    <span class="unit-tag">metro lineal</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <span class="service-num">05</span>
+                <h3 class="service-name">Enjarre de paredes</h3>
+                <div class="pricing-row">
+                    <span class="price-tag">$200</span>
+                    <span class="unit-tag">por m²</span>
+                </div>
+            </div>
+
+            <div class="service-card custom-quote">
+                <span class="service-num">06</span>
+                <h3 class="service-name">Aplanado de muros</h3>
+                <div class="pricing-row">
+                    <span class="price-tag">A cotizar</span>
+                    <span class="unit-tag">Bajo evaluación</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <span class="service-num">07</span>
+                <h3 class="service-name">Colocación de yeso</h3>
+                <div class="pricing-row">
+                    <span class="price-tag">$150</span>
+                    <span class="unit-tag">por m²</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <span class="service-num">08</span>
+                <h3 class="service-name">Instalación de tablaroca</h3>
+                <div class="pricing-row">
+                    <span class="price-tag">$300</span>
+                    <span class="unit-tag">por m²</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <span class="service-num">09</span>
+                <h3 class="service-name">Colocación de piso</h3>
+                <div class="pricing-row">
+                    <span class="price-tag">$180</span>
+                    <span class="unit-tag">por m²</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <span class="service-num">10</span>
+                <h3 class="service-name">Instalación de azulejo</h3>
+                <div class="pricing-row">
+                    <span class="price-tag">$180</span>
+                    <span class="unit-tag">por m²</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <span class="service-num">11</span>
+                <h3 class="service-name">Instalación de mosaico</h3>
+                <div class="pricing-row">
+                    <span class="price-tag">$180</span>
+                    <span class="unit-tag">por m²</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <span class="service-num">12</span>
+                <h3 class="service-name">Pintura de interiores</h3>
+                <div class="pricing-row">
+                    <span class="price-tag">$50</span>
+                    <span class="unit-tag">por m²</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <span class="service-num">13</span>
+                <h3 class="service-name">Pintura de exteriores</h3>
+                <div class="pricing-row">
+                    <span class="price-tag">$50</span>
+                    <span class="unit-tag">por m²</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <span class="service-num">14</span>
+                <h3 class="service-name">Impermeabilización</h3>
+                <div class="pricing-row">
+                    <span class="price-tag">$60</span>
+                    <span class="unit-tag">por m²</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <span class="service-num">15</span>
+                <h3 class="service-name">Construcción de banquetas</h3>
+                <div class="pricing-row">
+                    <span class="price-tag">$300</span>
+                    <span class="unit-tag">metro lineal</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <span class="service-num">16</span>
+                <h3 class="service-name">Construcción de escaleras</h3>
+                <div class="pricing-row">
+                    <span class="price-tag">$800</span>
+                    <span class="unit-tag">por escalón</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <span class="service-num">17</span>
+                <h3 class="service-name">Instalación de puertas</h3>
+                <div class="pricing-row">
+                    <span class="price-tag">$500</span>
+                    <span class="unit-tag">por pieza</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <span class="service-num">18</span>
+                <h3 class="service-name">Instalación de ventanas</h3>
+                <div class="pricing-row">
+                    <span class="price-tag">$500</span>
+                    <span class="unit-tag">por pieza</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <span class="service-num">19</span>
+                <h3 class="service-name">Instalación eléctrica</h3>
+                <div class="pricing-row">
+                    <span class="price-tag">$350</span>
+                    <span class="unit-tag">la salida</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <span class="service-num">20</span>
+                <h3 class="service-name">Colocación de tinacos</h3>
+                <div class="pricing-row">
+                    <span class="price-tag">$1000</span>
+                    <span class="unit-tag">por pieza</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <span class="service-num">21</span>
+                <h3 class="service-name">Demolición de paredes</h3>
+                <div class="pricing-row">
+                    <span class="price-tag">$50</span>
+                    <span class="unit-tag">por m²</span>
+                </div>
+            </div>
+
+            <div class="empty-search" id="emptySearch">
+                No hay servicios que coincidan con los términos buscados.
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-column-brand">
+                <h3>Guerrero Construction</h3>
+                <p>Edificando con eficiencia, calidad e innovación soluciones estructurales que trascienden fronteras.</p>
+            </div>
+            <div class="footer-column-contact">
+                <h4>Contacto</h4>
+                <ul class="footer-contact-list">
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <a href="mailto:guerrerosconstructionss@gmail.com">guerrerosconstructionss@gmail.com</a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-phone"></i>
+                        <a href="tel:4492897128">449 289 7128</a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>Aguascalientes, México</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Guerrero Construction. Todos los derechos reservados.</p>
+    
+        </div>
+    </footer>
+
+    <script>
+        // Lógica del buscador en tiempo real del catálogo
+        const catalogSearch = document.getElementById('catalogSearch');
+        const serviceCards = document.querySelectorAll('.service-card');
+        const emptySearch = document.getElementById('emptySearch');
+
+        catalogSearch.addEventListener('input', (event) => {
+            const query = event.target.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            let matchesFound = false;
+
+            serviceCards.forEach(card => {
+                const nameText = card.querySelector('.service-name').textContent.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                
+                if (nameText.includes(query)) {
+                    card.style.display = 'flex';
+                    matchesFound = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            emptySearch.style.display = matchesFound ? 'none' : 'block';
+        });
+
+        // Array para controlar el estado independiente de cada uno de los 3 carruseles (Mantenido para consistencia con tus otras páginas)
+        let carouselStates = [0, 0, 0];
+        const totalSlides = 3; 
+        
+        const containers = document.querySelectorAll('.carousel-container');
+        const wrappers = document.querySelectorAll('.carousel-wrapper');
+        let autoSlideIntervals = [];
+
+        function showSlide(carouselIndex, slideIndex) {
+            let currentIndex = carouselStates[carouselIndex];
+            
+            if (slideIndex >= totalSlides) currentIndex = 0;
+            else if (slideIndex < 0) currentIndex = totalSlides - 1;
+            else currentIndex = slideIndex;
+
+            carouselStates[carouselIndex] = currentIndex;
+
+            // Desplazamiento del contenedor específico (solo se ejecutará si los elementos existen en el DOM)
+            if(containers[carouselIndex]) {
+                containers[carouselIndex].style.transform = `translateX(-${currentIndex * (100 / totalSlides)}%)`;
+            }
+
+            // Actualizar los puntos (indicators) de este carrusel en específico
+            if(wrappers[carouselIndex]) {
+                const dots = wrappers[carouselIndex].querySelectorAll('.indicator-dot');
+                dots.forEach(dot => dot.classList.remove('active'));
+                if(dots[currentIndex]) dots[currentIndex].classList.add('active');
+            }
+        }
+
+        function moveSlide(carouselIndex, direction) {
+            showSlide(carouselIndex, carouselStates[carouselIndex] + direction);
+            resetTimer(carouselIndex);
+        }
+
+        function currentSlide(carouselIndex, slideIndex) {
+            showSlide(carouselIndex, slideIndex);
+            resetTimer(carouselIndex);
+        }
+
+        function startTimers() {
+            for (let i = 0; i < carouselStates.length; i++) {
+                autoSlideIntervals[i] = setInterval(() => {
+                    moveSlide(i, 1);
+                }, 6000);
+            }
+        }
+
+        function resetTimer(carouselIndex) {
+            clearInterval(autoSlideIntervals[carouselIndex]);
+            autoSlideIntervals[carouselIndex] = setInterval(() => {
+                moveSlide(carouselIndex, 1);
+            }, 6000);
+        }
+
+        // Iniciar los temporizadores automáticos independientes al cargar la página si existen carruseles
+        if (containers.length > 0) {
+            startTimers();
+        }
+    </script>
+
+</body>
+</html>

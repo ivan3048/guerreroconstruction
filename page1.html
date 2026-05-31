@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos de Industria y Comercio - Guerrero Construction</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==========================================================================
+           1. RESET Y ESTILOS GENERALES
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body, html {
+            background-color: #ffffff;
+            color: #111111;
+            scroll-behavior: smooth;
+        }
+
+        /* ==========================================================================
+           2. CABECERA / NAVBAR DEFINITIVA
+           ========================================================================== */
+        .main-header {
+            background-color: #004ba0;
+            width: 100%;
+            padding: 0 8%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 90px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-box {
+            border: 2px solid #ffffff;
+            padding: 6px 16px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-item {
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .nav-item > a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item > a:hover {
+            color: #fcb900;
+        }
+
+        .dropdown-arrow::after {
+            content: ' ▾';
+            font-size: 0.8rem;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            min-width: 240px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.12);
+            list-style: none;
+            padding: 12px 0;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu li a {
+            color: #111111;
+            text-decoration: none;
+            display: block;
+            padding: 12px 20px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: #f5f5f5;
+            color: #004ba0;
+        }
+
+        /* ==========================================================================
+           3. BANNER HERO
+           ========================================================================== */
+        .page-banner {
+            position: relative;
+            height: 45vh;
+            min-height: 300px;
+            background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
+                        url('1.png') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 8%;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .banner-content h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #333333;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        /* ==========================================================================
+           4. INTRODUCCIÓN
+           ========================================================================== */
+        .intro-section {
+            padding: 60px 8% 30px 8%;
+            text-align: center;
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+
+        .intro-section p {
+            font-size: 1.2rem;
+            color: #444444;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* ==========================================================================
+           5. SECCIÓN DE OBRA ÚNICA (ALTARIA)
+           ========================================================================== */
+        .single-project-section {
+            padding: 10px 8% 40px 8%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-showcase-container {
+            position: relative;
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .project-main-image {
+            width: 100%;
+            height: auto;
+            max-height: 650px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .project-overlay-details {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            background-color: rgba(252, 185, 0, 0.95);
+            padding: 30px;
+            max-width: 550px;
+            color: #111111;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border-radius: 4px;
+        }
+
+        .project-overlay-details h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .project-info-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+
+        .project-info-text p {
+            margin-bottom: 8px;
+        }
+
+        /* ==========================================================================
+           6. SECCIÓN CARRUSEL AUTOMÁTICO (3 IMÁGENES CON INFORMACIÓN)
+           ========================================================================== */
+        .carousel-section {
+            padding: 0 8% 100px 8%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            height: 550px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+
+        .carousel-container {
+            display: flex;
+            width: 300%; /* Modificado para 3 imágenes (100% cada una) */
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .carousel-slide {
+            width: 33.333%; /* 100% / 3 slides */
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Recuadro informativo flotante en la esquina superior izquierda del carrusel */
+        .carousel-overlay-details {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            background-color: rgba(252, 185, 0, 0.95); /* Amarillo corporativo idéntico */
+            padding: 30px;
+            max-width: 550px;
+            color: #111111;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border-radius: 4px;
+            z-index: 5;
+        }
+
+        .carousel-overlay-details h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Controles de flechas laterales */
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 75, 160, 0.85);
+            color: #ffffff;
+            border: none;
+            width: 50px;
+            height: 50px;
+            font-size: 2rem;
+            line-height: 46px;
+            text-align: center;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .carousel-control:hover {
+            background-color: #fcb900;
+            color: #111111;
+        }
+
+        .carousel-control.prev { left: 20px; }
+        .carousel-control.next { right: 20px; }
+
+        /* Puntos de navegación inferiores */
+        .carousel-indicators {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .indicator-dot {
+            width: 12px;
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .indicator-dot.active {
+            background-color: #fcb900;
+            transform: scale(1.2);
+            width: 24px;
+            border-radius: 6px;
+        }
+
+        /* ==========================================================================
+           7. PIE DE PÁGINA (ULTRA-MINIMALISTA)
+           ========================================================================== */
+        .main-footer {
+            background-color: #111111;
+            color: #ffffff;
+            padding: 60px 8% 30px 8%;
+            font-size: 0.9rem;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 50px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 40px;
+        }
+
+        .footer-column-brand {
+            flex: 1.5;
+            min-width: 280px;
+        }
+
+        .footer-column-brand h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .footer-column-brand p {
+            color: #aaaaaa;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .footer-column-contact {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-column-contact h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-column-contact h4::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 35px;
+            height: 3px;
+            background-color: #fcb900;
+        }
+
+        .footer-contact-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .footer-contact-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #aaaaaa;
+            font-weight: 300;
+        }
+
+        .footer-contact-list li i {
+            color: #fcb900;
+            font-size: 1.1rem;
+            width: 20px;
+        }
+
+        .footer-contact-list li a {
+            color: #aaaaaa;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-contact-list li a:hover {
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 30px;
+            color: #666666;
+            font-size: 0.8rem;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-bottom p a {
+            color: #666666;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-bottom p a:hover {
+            color: #aaaaaa;
+        }
+
+        /* ==========================================================================
+           8. RESPONSIVIDAD AJUSTADA
+           ========================================================================== */
+        @media (max-width: 900px) {
+            .project-overlay-details, .carousel-overlay-details {
+                position: relative;
+                top: 0;
+                left: 0;
+                max-width: 100%;
+                border-radius: 0;
+                padding: 25px;
+            }
+            .carousel-wrapper {
+                height: auto;
+            }
+            .carousel-container {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                justify-content: center;
+                gap: 15px;
+                height: auto;
+                padding: 20px 0;
+            }
+
+            .nav-menu { gap: 25px; }
+
+            .dropdown-menu {
+                position: static;
+                min-width: 100%;
+                box-shadow: none;
+                background-color: #0d3875;
+                border-radius: 6px;
+                margin-top: 5px;
+            }
+
+            .dropdown-menu li a {
+                color: #ffffff;
+                text-align: center;
+            }
+
+            .banner-content h1 { font-size: 1.9rem; }
+            .intro-section p { font-size: 1rem; }
+            .carousel-container { height: 300px; }
+            .footer-container { flex-direction: column; gap: 35px; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="logo-container">
+                <a href="index.html" class="logo-box">Guerrero Construction</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="dropdown-arrow">Proyectos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="page1.html">Industria y Comercio</a></li>
+                        <li><a href="page2.html">Vivienda</a></li>
+                        <li><a href="page3.html">Infraestructura</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="servicios.html">Servicios</a></li>
+      
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-banner">
+        <div class="banner-content">
+            <h1>Proyectos de Industria y Comercio</h1>
+        </div>
+    </section>
+
+    <section class="intro-section">
+        <p>Enfocados en proyectos comerciales innovadores, desarrollamos espacios que fortalecen los negocios y brindan experiencias únicas, desde centros comerciales hasta oficinas y locales especializados.</p>
+    </section>
+
+    <section class="single-project-section">
+        <div class="project-showcase-container">
+            <img src="1.png" alt="Centro Comercial Altaria" class="project-main-image">
+            <div class="project-overlay-details">
+                <h2>Centro Comercial Altaria</h2>
+                <div class="project-info-text">
+                    <p><strong>Cliente:</strong> Grupo Aryba</p>
+                    <p><strong>Obra:</strong> Cisterna, Módulo La Comer, Jardineras, Instalaciones, Cuarto de Máquinas y Cimentación de Módulos, Canopys</p>
+                    <p><strong>Periodo de Ejecución:</strong> Junio 2018 a Febrero 2020</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="carousel-section">
+        <div class="carousel-wrapper">
+            
+            <button class="carousel-control prev" onclick="moveSlide(-1)">‹</button>
+            <button class="carousel-control next" onclick="moveSlide(1)">›</button>
+            
+            <div class="carousel-container" id="carouselContainer">
+                
+                <div class="carousel-slide">
+                    <img src="2.png" alt="Proyecto Comercial 1">
+                    <div class="carousel-overlay-details">
+                        <h2>Centro Comercial Vía Alta</h2>
+                        <div class="project-info-text">
+                            <p><strong>Cliente:</strong> Grupo Aryba</p>
+                            <p><strong>Obra:</strong> Cimentación, Módulos, Track Mall, Restaurante Denny's</p>
+                            <p><strong>Periodo de Ejecución:</strong> Diciembre 2018 a Enero 2021</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="3.png" alt="Proyecto Comercial 2">
+                    <div class="carousel-overlay-details">
+                        <h2>Complejo Industrial Norte</h2>
+                        <div class="project-info-text">
+                            <p><strong>Cliente:</strong> Inmobiliaria Bajío</p>
+                            <p><strong>Obra:</strong> Naves Industriales, Pavimentación de patios de maniobras e Instalaciones Eléctricas de Alta Tensión</p>
+                            <p><strong>Periodo de Ejecución:</strong> Marzo 2021 a Octubre 2022</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="4.png" alt="Proyecto Comercial 3">
+                    <div class="carousel-overlay-details">
+                        <h2>Oficinas Corporativas Altus</h2>
+                        <div class="project-info-text">
+                            <p><strong>Cliente:</strong> Desarrollo Urbano del Centro</p>
+                            <p><strong>Obra:</strong> Estructura Metálica, Fachada Integral de Cristal, Acabados en Interiores y Lobby Principal</p>
+                            <p><strong>Periodo de Ejecución:</strong> Enero 2023 a Noviembre 2024</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="carousel-indicators">
+                <button class="indicator-dot active" onclick="currentSlide(0)"></button>
+                <button class="indicator-dot" onclick="currentSlide(1)"></button>
+                <button class="indicator-dot" onclick="currentSlide(2)"></button>
+            </div>
+            
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-column-brand">
+                <h3>Guerrero Construction</h3>
+                <p>Edificando con eficiencia, calidad e innovación soluciones estructurales que trascienden fronteras.</p>
+            </div>
+            <div class="footer-column-contact">
+                <h4>Contacto</h4>
+                <ul class="footer-contact-list">
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <a href="mailto:guerrerosconstructionss@gmail.com">guerrerosconstructionss@gmail.com</a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-phone"></i>
+                        <a href="tel:4492897128">449 289 7128</a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>Aguascalientes, México</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Guerrero Construction. Todos los derechos reservados.</p>
+    
+        </div>
+    </footer>
+
+    <script>
+        let currentIndex = 0;
+        const totalSlides = 3; // Ajustado a 3 imágenes
+        const container = document.getElementById('carouselContainer');
+        const dots = document.querySelectorAll('.indicator-dot');
+        let autoSlideInterval;
+
+        function showSlide(index) {
+            if (index >= totalSlides) currentIndex = 0;
+            else if (index < 0) currentIndex = totalSlides - 1;
+            else currentIndex = index;
+
+            // Desplazamiento basado en un carrusel de 3 elementos (100% / 3 = 33.333% por slide)
+            container.style.transform = `translateX(-${currentIndex * (100 / totalSlides)}%)`;
+
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentIndex].classList.add('active');
+        }
+
+        function moveSlide(direction) {
+            showSlide(currentIndex + direction);
+            resetTimer();
+        }
+
+        function currentSlide(index) {
+            showSlide(index);
+            resetTimer();
+        }
+
+        function startTimer() {
+            autoSlideInterval = setInterval(() => {
+                moveSlide(1);
+            }, 6000);
+        }
+
+        function resetTimer() {
+            clearInterval(autoSlideInterval);
+            startTimer();
+        }
+
+        startTimer();
+    </script>
+
+</body>
+</html>
