@@ -3,1212 +3,605 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guerrero Construction - Constructora en Aguascalientes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Lumi - Librería</title>
     <style>
-        /* --- ESTILOS GENERALES Y RESET --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+
+        /* Variables de diseño de la marca (Tonos crema, terracota y oscuros elegantes) */
+        :root {
+            --bg-cream: #f4efe9;
+            --text-dark: #1c1a17;
+            --accent-terracotta: #bd5b38;
+            --accent-hover: #a1492b;
+            --card-dark: #1e1e1e;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        body, html {
-            background-color: #ffffff;
-            color: #111111;
-        }
-
-        /* --- CONTENEDOR PRINCIPAL (HERO SECTION) --- */
-        .hero {
-            position: relative;
-            height: 100vh;
-            width: 100%;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                        url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070') no-repeat center center/cover;
-            padding: 0 8%;
-            display: flex;
-            flex-direction: column;
-            border-top: 5px solid #fcb900; /* Línea superior amarilla */
-        }
-
-        /* --- NAVBAR --- */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 100px;
-            width: 100%;
-            position: relative;
-            z-index: 10;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo-placeholder {
-            border: 2px solid #fff;
-            padding: 5px 15px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            color: #ffffff;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 35px;
-        }
-
-        .nav-item {
-            position: relative;
-            padding: 10px 0;
-        }
-
-        .nav-item > a {
-            text-decoration: none;
-            color: #ffffff;
-            font-size: 0.9rem;
-            font-weight: 400;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: color 0.3s ease;
-        }
-
-        .nav-item > a:hover {
-            color: #fcb900;
-        }
-
-        .dropdown-arrow::after {
-            content: ' ▾';
-            font-size: 0.8rem;
-        }
-
-        /* --- ESTILOS DEL SUBMENÚ --- */
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: #ffffff;
-            min-width: 260px;
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-            list-style: none;
-            padding: 15px 0;
-        }
-
-        .nav-item:hover .dropdown-menu {
-            display: block;
-        }
-
-        .dropdown-menu li a {
-            color: #111111;
-            text-decoration: none;
-            display: block;
-            padding: 12px 25px;
-            font-size: 0.95rem;
-            font-weight: 400;
-            transition: background-color 0.2s ease, color 0.2s ease;
-        }
-
-        .dropdown-menu li a:hover {
-            background-color: #f5f5f5;
-            color: #fcb900;
-        }
-
-        /* --- CONTENIDO HERO --- */
-        .hero-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            max-width: 650px;
-            margin-bottom: 80px;
-            color: #ffffff;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-        }
-
-        .hero-content p {
-            font-size: 1.3rem;
-            font-weight: 300;
+        body {
+            background-color: #faf8f5;
+            color: var(--text-dark);
             line-height: 1.5;
-            margin-bottom: 35px;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
         }
 
-        .btn-contacto {
-            display: inline-block;
-            background-color: #fcb900;
-            color: #000000;
-            text-decoration: none;
-            padding: 14px 35px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            border-radius: 50px;
-            align-self: flex-start;
-            transition: transform 0.2s ease, background-color 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        /* Header */
+        header { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 20px 8%; background: #f2f0eb; 
+        }
+        .logo { font-weight: bold; font-size: 1.8rem; display: flex; align-items: center; gap: 10px; }
+        .nav-menu { display: flex; gap: 20px; align-items: center; }
+        .nav-link { text-decoration: none; color: #333; font-size: 0.9rem; }
+
+        /* Hero Section */
+        .hero { 
+            height: 60vh; background: #333; color: white; 
+            display: flex; flex-direction: column; justify-content: center; 
+            padding: 0 8%; background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('fondo.jpeg');
+            background-size: cover; background-position: center;
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; color: #e67e22; }
+        .hero p { font-size: 1.1rem; margin-bottom: 30px; max-width: 500px; }
+        .btn-explorar { 
+            background: white; color: black; padding: 15px 30px; 
+            border: none; border-radius: 50px; cursor: pointer; font-weight: bold; width: fit-content;
         }
 
-        .btn-contacto:hover {
-            background-color: #e0a500;
-            transform: translateY(-2px);
-        }
-
-        /* --- NUEVA SECCIÓN: SOBRE NOSOTROS / INFO --- */
-        .info-section {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 80px 8%;
-            background-color: #ffffff;
-            gap: 50px;
-        }
-
-        .info-text {
-            flex: 1;
-            max-width: 600px;
-        }
-
-        .info-text p {
-            color: #333333;
-            font-size: 1.1rem;
-            font-weight: 300;
-            line-height: 1.7;
-            margin-bottom: 25px;
-        }
-        
-        .info-text p:last-child {
-            margin-bottom: 0; /* Elimina margen del último párrafo */
-        }
-
-        .info-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-        }
-
-        .info-image img {
-            width: 100%;
-            max-width: 550px;
-            height: auto;
-            object-fit: cover;
+        /* --- CARRUSEL CON BOTONES INTERNOS --- */
+        .lumi-carousel {
+            position: relative;
+            max-width: 1000px;
+            margin: 40px auto;
+            overflow: hidden;
+            border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        /* --- RESPONSIVIDAD (MOBILE) --- */
-        @media (max-width: 992px) {
-            .info-section {
-                flex-direction: column;
-                padding: 60px 8%;
-                gap: 40px;
-            }
-            
-            .info-text {
-                max-width: 100%;
-            }
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
         }
 
+        .carousel-item {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .carousel-item a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            display: block;
+            height: 400px; 
+            object-fit: cover;
+        }
+
+        /* Capa de color negro con opacidad para resaltar textos */
+        .carousel-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); 
+            z-index: 1;
+        }
+
+        /* Contenedor para los textos encima de la imagen */
+        .carousel-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            width: 80%;
+        }
+
+        /* Botones de navegación */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 10; 
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            transition: background 0.3s;
+        }
+        .nav-btn:hover { background: rgba(255, 255, 255, 1); }
+        .prev { left: 20px; }
+        .next { right: 20px; }
+
+        /* Indicadores inferiores */
+        .indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .dot.active { background: white; }
+
+        /* --- SISTEMA DE RECOMPENSA (TARJETA LUMI) --- */
+        .hero-section {
+            background-color: var(--bg-cream);
+            min-height: 550px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 40px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-container { max-width: 1200px; width: 100%; display: table; }
+        .hero-column-left { display: table-cell; vertical-align: middle; width: 55%; padding-right: 40px; }
+        .hero-column-right { display: table-cell; vertical-align: middle; width: 45%; text-align: center; }
+
+        .hero-tag {
+            display: inline-block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            color: var(--accent-terracotta);
+            margin-bottom: 16px;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            color: var(--text-dark);
+            letter-spacing: -0.5px;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: #59534c;
+            margin-bottom: 36px;
+            max-width: 540px;
+        }
+
+        .hero-description strong { color: var(--text-dark); font-weight: 700; }
+
+        .btn-cta {
+            display: inline-block;
+            background-color: var(--accent-terracotta);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 16px 36px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(189, 91, 56, 0.3);
+            transition: var(--transition);
+        }
+
+        .btn-cta:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(189, 91, 56, 0.4);
+        }
+
+        .hero-footer-tag { margin-top: 20px; font-size: 0.75rem; color: #a69f95; text-transform: uppercase; letter-spacing: 1px; }
+        .visual-container { position: relative; display: inline-block; padding: 20px; }
+
+        .badge-discount {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            background-color: #d9a752;
+            color: #ffffff;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            transform: rotate(12deg);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            z-index: 10;
+            border: 2px dashed rgba(255,255,255,0.4);
+        }
+
+        .badge-discount .pct { font-size: 1.4rem; line-height: 1; }
+        .badge-discount .txt { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .lumi-card {
+            background: linear-gradient(135deg, #2c2925 0%, #141311 100%);
+            width: 360px;
+            height: 220px;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: left;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+            color: #ffffff;
+            transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .lumi-card:hover {
+            transform: translateY(-5px) rotate(-1deg);
+            box-shadow: 0 30px 50px rgba(0,0,0,0.35);
+        }
+
+        .card-logo { font-size: 1.5rem; font-weight: 300; letter-spacing: 4px; color: #f4efe9; margin-bottom: 30px; }
+        .card-logo span { font-weight: 700; color: #d9a752; }
+        .card-progress { display: flex; justify-content: flex-start; gap: 14px; margin-bottom: 24px; }
+
+        .progress-dot {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid rgba(244, 239, 233, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: rgba(244, 239, 233, 0.6);
+        }
+
+        .progress-dot.active { border-color: #d9a752; background-color: rgba(217, 167, 82, 0.1); color: #d9a752; }
+        .progress-dot.reward { border-color: var(--accent-terracotta); background-color: var(--accent-terracotta); color: #ffffff; font-weight: 700; }
+        .card-footer { position: absolute; bottom: 24px; left: 24px; right: 24px; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: rgba(244, 239, 233, 0.4); letter-spacing: 1px; text-transform: uppercase; }
+
+        .seccion-titulo { text-align: center; padding: 40px 0 20px 0; font-size: 1.8rem; color: #333; font-weight: bold; }
+
+        /* --- GRID DE PRODUCTOS --- */
+        .productos-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 40px 8%;
+        }
+
+        .producto-card {
+            border: 1px solid #eee;
+            padding: 15px;
+            text-align: center;
+            background: #fff;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+        }
+        .producto-card:hover { transform: translateY(-5px); }
+        .producto-card img { width: 100%; height: 250px; object-fit: cover; margin-bottom: 10px; border-radius: 4px; }
+        
+        .btn-ver {
+            background-color: #a05a41;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: auto;
+            display: block;
+        }
+
+        /* --- SECCIÓN MISIÓN Y VISIÓN --- */
+        .mision-vision-container {
+            background-color: var(--bg-cream);
+            padding: 60px 8%;
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            align-items: stretch;
+        }
+
+        .mision-vision-card {
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 16px;
+            flex: 1;
+            max-width: 500px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-terracotta);
+        }
+
+        .mision-vision-card h2 {
+            font-size: 1.6rem;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .mision-vision-card p {
+            color: #59534c;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* --- FOOTER CUSTOM --- */
+        .footer-custom-container {
+            background-color: #a05a41; 
+            padding: 40px 5%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            width: 100%;
+            max-width: 350px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .card-title { display: flex; align-items: center; gap: 10px; font-weight: bold; font-size: 1.1rem; }
+        .btn-footer { background-color: #1c1a17; color: white; text-align: center; padding: 12px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+        .btn-story { background-color: #d35400; } 
+        .btn-video { background-color: #c0392b; }
+        .link-colaboradores { color: #a05a41; text-decoration: underline; font-weight: bold; text-align: center; cursor: pointer; }
+        .horario-row { display: flex; justify-content: space-between; margin-bottom: 5px; }
+
+        /* Ajustes Responsivos Generales */
+        @media (max-width: 1024px) { .productos-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                justify-content: center;
-                gap: 15px;
-                height: auto;
-                padding: 20px 0;
-            }
-
-            .nav-menu {
-                gap: 20px;
-            }
-
-            .dropdown-menu {
-                position: static;
-                min-width: 100%;
-                box-shadow: none;
-                background-color: #222;
-            }
-
-            .dropdown-menu li a {
-                color: #ffffff;
-                text-align: center;
-            }
-
-            .hero-content {
-                align-items: center;
-                text-align: center;
-                margin-bottom: 0;
-            }
-
-            .hero-content h1 {
-                font-size: 2.2rem;
-            }
-
-            .hero-content p {
-                font-size: 1rem;
-            }
-
-            .btn-contacto {
-                align-self: center;
-            }
+            .hero-container, .hero-column-left, .hero-column-right { display: block; width: 100%; text-align: center; padding-right: 0; }
+            .hero-column-right { margin-top: 50px; }
+            .hero-title { font-size: 2.2rem; }
+            .hero-description { margin: 0 auto 24px auto; }
+            .carousel-item img { height: 250px; }
+            .carousel-text { font-size: 1.5rem; }
+            .mision-vision-container { flex-direction: column; align-items: center; gap: 25px; }
         }
+        @media (max-width: 600px) { .productos-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-    <section class="hero">
-        <nav class="navbar">
-            <div class="logo-container">
-                <div class="logo-placeholder">Guerrero Construction</div>
-            </div>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="#" class="dropdown-arrow">Proyectos</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="page1.html">Industria y Comercio</a></li>
-                        <li><a href="page2.html">Vivienda</a></li>
-                        <li><a href="page3.html">Infraestructura</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a href="servicios.html">Servicios</a></li>
-     
-            </ul>
-        </nav>
+<header>
+    <div class="logo">✦ Lumi</div>
+    <nav class="nav-menu">
+        <a href="index.html" class="nav-link">INCIO</a>
+        <a href="carrito.html" class="nav-link">Carrito</a>
+    </nav>
+</header>
 
-        <div class="hero-content">
-            <h1>Constructora en<br>Aguascalientes</h1>
-            <p>Con más de 30 años de experiencia, edificando con eficiencia, calidad e innovación que trasciende fronteras.</p>
-            <a href="https://wa.me/521234567890" class="btn-contacto">Contáctanos</a>
-        </div>
-    </section>
-
-    <section class="info-section">
-        <div class="info-text">
-            <p><strong>GUERRERO CONSTRUCTION</strong> lidera proyectos en diversos sectores, consolidándose como una constructora referente. Nos enfocamos en ofrecer soluciones innovadoras que integran eficiencia y calidad en cada obra.</p>
-            <p>Nuestro compromiso es transformar ideas en realidades que superen expectativas, siempre con una visión global y un enfoque estratégico.</p>
-            <p>Desde infraestructura hasta edificaciones comerciales, industriales y de vivienda, aseguramos excelencia en cada detalle, contribuyendo al desarrollo de México y al posicionamiento en el sector.</p>
-        </div>
-        <div class="info-image">
-            <img src="logo.png" alt="Obra en construcción Guerrero Construction">
-        </div>
-    </section>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<style>
-    /* --- SECCIÓN AMARILLA (ESPECIALIDADES Y PROYECTOS) --- */
-    .services-projects-section {
-        background-color: #fcb900; /* Amarillo corporativo */
-        color: #111111;
-        padding: 60px 8% 120px 8%;
-        text-align: center;
-    }
-
-    .section-title {
-        font-size: 1.8rem;
-        font-weight: 700;
-        margin-bottom: 40px;
-    }
-
-    /* Especialidades (Iconos superiores) */
-    .specialties-container {
-        display: flex;
-        justify-content: center;
-        gap: 60px;
-        margin-bottom: 60px;
-        flex-wrap: wrap;
-    }
-
-    .specialty-item {
-        flex: 1;
-        max-width: 220px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .specialty-item i {
-        font-size: 3rem;
-        margin-bottom: 15px;
-        color: #111111;
-    }
-
-    .specialty-item p {
-        font-size: 0.9rem;
-        font-weight: 400;
-        line-height: 1.3;
-    }
-
-    /* Tarjetas de Proyectos Destacados */
-    .cards-container {
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        flex-wrap: wrap;
-        margin-top: 30px;
-    }
-
-    .project-card {
-        background-color: #ffffff;
-        border-radius: 20px;
-        overflow: hidden;
-        width: 240px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-bottom: 25px;
-        border: 1px solid rgba(0,0,0,0.05);
-    }
-
-    .card-image {
-        width: 100%;
-        height: 150px;
-        object-fit: cover;
-    }
-
-    .card-title {
-        font-size: 1rem;
-        font-weight: 700;
-        color: #333333;
-        margin: 25px 15px;
-        min-height: 40px;
-        display: flex;
-        align-items: center;
-        text-justify: center;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    .btn-ver-mas {
-        background-color: #0d47a1; /* Azul de los botones */
-        color: #ffffff;
-        text-decoration: none;
-        padding: 8px 25px;
-        font-size: 0.85rem;
-        font-weight: 700;
-        border-radius: 6px;
-        transition: background-color 0.2s ease;
-    }
-
-    .btn-ver-mas:hover {
-        background-color: #0a3780;
-    }
-<style>
-    /* --- SECCIÓN AMARILLA (ESPECIALIDADES Y PROYECTOS) --- */
-    .services-projects-section {
-        background-color: #fcb900; /* Amarillo corporativo */
-        color: #111111;
-        padding: 90px 8% 140px 8%;
-        text-align: center;
-        position: relative;
-    }
-
-    .section-title {
-        font-size: 2.2rem;
-        font-weight: 700;
-        margin-bottom: 50px;
-        letter-spacing: -0.5px;
-        position: relative;
-    }
-
-    /* Especialidades (Iconos superiores con micro-interacciones) */
-    .specialties-container {
-        display: flex;
-        justify-content: center;
-        gap: 80px;
-        margin-bottom: 90px;
-        flex-wrap: wrap;
-    }
-
-    .specialty-item {
-        flex: 1;
-        max-width: 240px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        transition: transform 0.3s ease;
-    }
-
-    .specialty-item i {
-        font-size: 3.5rem;
-        margin-bottom: 20px;
-        color: #111111;
-        transition: color 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .specialty-item p {
-        font-size: 1rem;
-        font-weight: 700;
-        line-height: 1.4;
-    }
-
-    /* Efecto hover en Especialidades */
-    .specialty-item:hover transform {
-        transform: translateY(-5px);
-    }
-    
-    .specialty-item:hover i {
-        color: #004ba0; /* El icono cambia al azul premium */
-        transform: translateY(-8px) scale(1.05);
-    }
-
-    /* Contenedor de Tarjetas */
-    .cards-container {
-        display: flex;
-        justify-content: center;
-        gap: 40px;
-        flex-wrap: wrap;
-        margin-top: 20px;
-    }
-
-    /* Tarjeta de Proyecto Rediseñada Estilo Premium */
-    .project-card {
-        background-color: #ffffff;
-        border-radius: 24px; /* Bordes más redondeados y modernos */
-        overflow: hidden;
-        width: 280px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-bottom: 30px;
-        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
-        position: relative;
-    }
-
-    /* Contenedor de la imagen para controlar el desborde del zoom */
-    .card-image-wrapper {
-        width: 100%;
-        height: 180px;
-        overflow: hidden;
-        position: relative;
-    }
-
-    .card-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-
-    .card-title {
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: #111111;
-        margin: 30px 20px;
-        min-height: 48px;
-        display: flex;
-        align-items: center;
-        text-align: center;
-        text-transform: uppercase;
-        letter-spacing: 0.8px;
-    }
-
-    /* Botón Ver Más Estilizado */
-    .btn-ver-mas {
-        background-color: #004ba0; /* Azul premium */
-        color: #ffffff;
-        text-decoration: none;
-        padding: 10px 32px;
-        font-size: 0.85rem;
-        font-weight: 700;
-        border-radius: 8px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    }
-
-    /* --- ANIMACIONES HOVER PARA LAS TARJETAS --- */
-    .project-card:hover {
-        transform: translateY(-12px); /* Elevación fluida */
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
-    }
-
-    .project-card:hover .card-image {
-        transform: scale(1.1) rotate(1deg); /* Efecto zoom dinámico con leve rotación */
-    }
-
-    .project-card:hover .btn-ver-mas {
-        background-color: #fcb900; /* Invierte al amarillo corporativo */
-        color: #111111;
-        box-shadow: 0 4px 15px rgba(252, 185, 0, 0.4);
-    }
-
-    /* Ajustes de Responsividad */
-    @media (max-width: 768px) {
-        .services-projects-section {
-            padding-top: 60px;
-            padding-bottom: 120px;
-        }
-        .section-title {
-            font-size: 1.8rem;
-        }
-        .specialties-container {
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-        .cards-container {
-            gap: 30px;
-        }
-    }
-</style>
-
-<section class="services-projects-section">
-    
-    <h2 class="section-title">Nuestras áreas de especialidad</h2>
-    <div class="specialties-container">
-        <div class="specialty-item">
-            <i class="fa-regular fa-clipboard"></i>
-            <p>Planeación y Desarrollo de Proyectos</p>
-        </div>
-        <div class="specialty-item">
-            <i class="fa-solid fa-city"></i>
-            <p>Infraestructura y Edificación</p>
-        </div>
-        <div class="specialty-item">
-            <i class="fa-solid fa-helmet-safety"></i>
-            <p>Asesoría Técnica y Consultoría</p>
-        </div>
-    </div>
-
-    <h2 class="section-title">Conoce nuestros proyectos destacados en México</h2>
-    <div class="cards-container">
-        
-        <div class="project-card">
-            <div class="card-image-wrapper">
-                <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=400" alt="Industria y Comercio" class="card-image">
-            </div>
-            <div class="card-title">Industria<br>y Comercio</div>
-            <a href="page1.html" class="btn-ver-mas">Ver más</a>
-        </div>
-
-        <div class="project-card">
-            <div class="card-image-wrapper">
-                <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=400" alt="Vivienda" class="card-image">
-            </div>
-            <div class="card-title">Vivienda</div>
-            <a href="page2.html" class="btn-ver-mas">Ver más</a>
-        </div>
-
-        <div class="project-card">
-            <div class="card-image-wrapper">
-                <img src="15.png" alt="Infraestructura" class="card-image">
-            </div>
-            <div class="card-title">Infraestructura</div>
-            <a href="page3.html" class="btn-ver-mas">Ver más</a>
-        </div>
-
-    </div>
+<section class="hero">
+    <h1>Descubre tu próxima historia favorita</h1>
+    <p>Encuentra títulos seleccionados y variados perfectos para conectar con cada uno de tus gustos e intereses. Tu próxima gran lectura empieza aquí.</p>
+    <button class="btn-explorar">Explorar catálogo completo</button>
 </section>
-<style>
-    .metrics-section {
-        background-color: #ffffff;
-        padding: 50px 6%;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        gap: 40px;
-        border-radius: 30px;
-        max-width: 1100px;
-        margin: 40px auto;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-        flex-wrap: wrap;
-    }
 
-    .metric-item {
-        text-align: center;
-        flex: 1;
-        min-width: 250px;
-    }
-
-    .metric-number {
-        font-size: 3.2rem;
-        font-weight: 700;
-        color: #004ba0;
-        margin-bottom: 10px;
-        line-height: 1.1;
-    }
-
-    .metric-text {
-        font-size: 0.95rem;
-        font-weight: 700;
-        color: #111111;
-        line-height: 1.4;
-        max-width: 240px;
-        margin: 0 auto;
-    }
-
-    .metric-text.subtle {
-        font-weight: 400;
-        color: #666666;
-    }
-
-    @media (max-width: 768px) {
-        .metrics-section {
-            padding: 35px 5%;
-            gap: 30px;
-            margin: 20px;
-        }
-        .metric-number {
-            font-size: 2.6rem;
-        }
-    }
-</style>
-
-<section class="metrics-section" id="metrics-section">
-    <div class="metric-item">
-        <div class="metric-number">+<span class="counter" data-target="30">0</span> Años</div>
-        <div class="metric-text">de experiencia</div>
+<!-- SECCIÓN: CARRUSEL CON LAS 4 VARIANTES DE IMÁGENES -->
+<div class="lumi-carousel">
+    <div class="carousel-inner" id="inner">
+        <!-- Imagen 1 -->
+        <div class="carousel-item">
+            <a href="categoria.html">
+                <img src="carr1.png" alt="Promo 1">
+            </a>
+        </div>
+        <!-- Imagen 2 -->
+        <div class="carousel-item">
+            <a href="categoria2.html">
+                <img src="carr2.png" alt="Promo 2">
+            </a>
+        </div>
+        <!-- Imagen 3 -->
+        <div class="carousel-item">
+            <a href="https://wa.me/4497411545" target="_blank">
+                <div class="carousel-overlay"></div>
+                <div class="carousel-text">Contáctanos</div>
+                <img src="https://images.unsplash.com/photo-1513001900722-370f803f498d?q=80&w=1000&auto=format&fit=cover" alt="Estantes llenos de libros">
+            </a>
+        </div>
+        <!-- Imagen 4 -->
+        <div class="carousel-item">
+            <a href="https://www.instagram.com/lumilibros.mx?igsh=a2IybjJmZGxvY3Jv" target="_blank">
+                <div class="carousel-overlay"></div>
+                <div class="carousel-text">Visita nuestro Instagram</div>
+                <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=1000&auto=format&fit=cover" alt="Muchos libros apilados en biblioteca">
+            </a>
+        </div>
     </div>
-    
-    <div class="metric-item">
-        <div class="metric-number">+<span class="counter" data-target="200">0</span> Proyectos</div>
-        <div class="metric-text">culminados satisfactoriamente en México</div>
+
+    <!-- Botones de navegación -->
+    <button class="nav-btn prev" onclick="move(-1)">❮</button>
+    <button class="nav-btn next" onclick="move(1)">❯</button>
+
+    <!-- Indicadores -->
+    <div class="indicators">
+        <div class="dot active" onclick="goTo(0)"></div>
+        <div class="dot" onclick="goTo(1)"></div>
+        <div class="dot" onclick="goTo(2)"></div>
+        <div class="dot" onclick="goTo(3)"></div>
     </div>
-    
-    <div class="metric-item">
-        <div class="metric-number">+<span class="counter" data-target="100">0</span> Colaboraciones</div>
-        <div class="metric-text subtle">con especialistas en diferentes proyectos</div>
+</div>
+
+<!-- SECCIÓN: SISTEMA DE TARJETA / RECOMPENSAS -->
+<section class="hero-section">
+    <div class="hero-container">
+        <div class="hero-column-left">
+            <span class="hero-tag">Sistema de Recompensa</span>
+            <h1 class="hero-title">El camino a tus lecturas premiadas.</h1>
+            <p class="hero-description">
+                Con tu <strong>Tarjeta Lumi</strong>, cada 3 libros que compres con nosotros, recibes un <strong>40% de descuento</strong> directo aplicado en tu siguiente libro.
+            </p>
+            <a href="https://wa.me/4492906699" class="btn-cta" target="_blank">Solicita Tu Tarjeta Gratis</a>
+            <div class="hero-footer-tag">Desde tu primera compra</div>
+        </div>
+        
+        <div class="hero-column-right">
+            <div class="visual-container">
+                <div class="badge-discount">
+                    <span class="pct">40%</span>
+                    <span class="txt">Off</span>
+                </div>
+                
+                <div class="lumi-card">
+                    <div class="card-logo">LU<span>M</span>I</div>
+                    <div class="card-progress">
+                        <div class="progress-dot active">1</div>
+                        <div class="progress-dot active">2</div>
+                        <div class="progress-dot active">3</div>
+                        <div class="progress-dot reward">%</div>
+                    </div>
+                    <div class="card-footer">
+                        <span>Tarjeta de Lectura</span>
+                        <span>Lumi Reader</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const counters = document.querySelectorAll('.counter');
-        const speed = 40; 
+<div class="seccion-titulo">Títulos Destacados</div>
 
-        // Función que ejecuta la animación de los números
-        const startCounting = (counter) => {
-            const animate = () => {
-                const target = +counter.getAttribute('data-target');
-                const value = +counter.innerText;
-                const increment = target / speed;
-
-                if (value < target) {
-                    counter.innerText = Math.ceil(value + increment);
-                    setTimeout(animate, 25);
-                } else {
-                    counter.innerText = target;
-                }
-            }
-            animate();
-        };
-
-        // Configuramos el observador para detectar cuando la sección es visible
-        const observerOptions = {
-            root: null, // Usa la pantalla (viewport) como referencia
-            threshold: 0.2 // Se activa cuando el 20% de la sección es visible en pantalla
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                // Si el usuario llegó a la sección
-                if (entry.isIntersecting) {
-                    counters.forEach(counter => startCounting(counter));
-                    // Dejamos de observar la sección para que la animación solo ocurra una vez
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        // Activamos el observador en el contenedor de las métricas
-        const targetSection = document.getElementById('metrics-section');
-        if (targetSection) {
-            observer.observe(targetSection);
-        }
-    });
-</script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<style>
-    /* --- SECCIÓN DIFERENCIADORES --- */
-    .differentiators-section {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 100px 8%;
-        background-color: #ffffff;
-        gap: 60px;
-    }
-
-    /* Contenedor de la Imagen Izquierda */
-    .diff-image-container {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        position: relative;
-    }
-
-    .diff-image-container img {
-        width: 100%;
-        max-width: 550px;
-        height: auto;
-        object-fit: cover;
-        border-radius: 12px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-    }
-
-    /* Detalle decorativo geométrico detrás de la imagen */
-    .diff-image-container::before {
-        content: '';
-        position: absolute;
-        top: -15px;
-        left: -15px;
-        width: 120px;
-        height: 120px;
-        border-top: 5px solid #fcb900;
-        border-left: 5px solid #fcb900;
-        z-index: 1;
-        pointer-events: none;
-    }
-
-    /* Contenedor del Texto y Tarjetas Derecha */
-    .diff-content {
-        flex: 1;
-        max-width: 580px;
-    }
-
-    .diff-title {
-        font-size: 2.2rem;
-        font-weight: 700;
-        color: #004ba0; /* Azul insignia */
-        margin-bottom: 35px;
-        position: relative;
-        display: inline-block;
-    }
-
-    /* Línea decorativa bajo el título principal */
-    .diff-title::after {
-        content: '';
-        position: absolute;
-        bottom: -8px;
-        left: 0;
-        width: 60px;
-        height: 4px;
-        background-color: #fcb900;
-    }
-
-    /* Lista de Tarjetas */
-    .diff-cards-list {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    /* Estilo de Tarjeta Individual */
-    .diff-card {
-        display: flex;
-        align-items: flex-start;
-        gap: 20px;
-        padding: 24px;
-        background-color: #ffffff;
-        border-radius: 12px;
-        border-left: 5px solid #004ba0; /* Indicador lateral azul por defecto */
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        cursor: default;
-    }
-
-    /* Contenedor del Icono dentro de la tarjeta */
-    .diff-card-icon {
-        background-color: #f4f7fc;
-        color: #004ba0;
-        width: 50px;
-        height: 50px;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.4rem;
-        flex-shrink: 0;
-        transition: all 0.3s ease;
-    }
-
-    .diff-card-info h3 {
-        font-size: 1.15rem;
-        font-weight: 700;
-        color: #111111;
-        margin-bottom: 6px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    .diff-card-info p {
-        font-size: 0.95rem;
-        color: #555555;
-        line-height: 1.5;
-        font-weight: 300;
-    }
-
-    /* --- EFECTOS HOVER (REVOLUCIONANDO LA REFERENCIA) --- */
-    .diff-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
-        border-left-color: #fcb900; /* Cambia el borde a Amarillo */
-        background-color: #fafafa;
-    }
-
-    .diff-card:hover .diff-card-icon {
-        background-color: #fcb900; /* Fondo del icono cambia a Amarillo */
-        color: #111111; /* Icono pasa a oscuro */
-    }
-
-    /* --- RESPONSIVIDAD --- */
-    @media (max-width: 992px) {
-        .differentiators-section {
-            flex-direction: column;
-            padding: 70px 8%;
-            gap: 50px;
-        }
-
-        .diff-image-container {
-            width: 100%;
-            order: 2; /* Pasa la imagen abajo en tablets/móviles */
-        }
-
-        .diff-content {
-            width: 100%;
-            max-width: 100%;
-            order: 1;
-        }
-    }
-</style>
-
-<section class="differentiators-section">
-    
-    <div class="diff-image-container">
-        <img src="https://images.unsplash.com/photo-1590069261209-f8e9b8642343?q=80&w=1000" alt="Vista aérea de obra de construcción">
+<!-- SECCIÓN: ENTRADAS DE PRODUCTOS GRID 1 -->
+<div class="productos-grid">
+    <div class="producto-card">
+        <img src="jurassic.jpeg" alt="Libro">
+        <h3>Jurassic Park</h3>
+        <p>$220.00</p>
+        <a href="producto1.html" class="btn-ver">Ver producto</a>
     </div>
-
-    <div class="diff-content">
-        <h2 class="diff-title">Diferenciadores</h2>
-        
-        <div class="diff-cards-list">
-            
-            <div class="diff-card">
-                <div class="diff-card-icon">
-                    <i class="fa-solid fa-handshake-angle"></i>
-                </div>
-                <div class="diff-card-info">
-                    <h3>Compromiso</h3>
-                    <p>Garantizamos la entrega puntual de cada uno de nuestros proyectos, manteniendo una atención minuciosa y rigurosa en cada detalle estructural y arquitectónico.</p>
-                </div>
-            </div>
-
-            <div class="diff-card">
-                <div class="diff-card-icon">
-                    <i class="fa-solid fa-lightbulb"></i>
-                </div>
-                <div class="diff-card-info">
-                    <h3>Innovación</h3>
-                    <p>Implementamos tecnología avanzada de vanguardia y desarrollamos soluciones sostenibles orientadas a optimizar los recursos y el rendimiento de la obra.</p>
-                </div>
-            </div>
-
-            <div class="diff-card">
-                <div class="diff-card-icon">
-                    <i class="fa-solid fa-award"></i>
-                </div>
-                <div class="diff-card-info">
-                    <h3>Calidad</h3>
-                    <p>Utilizamos rigurosamente materiales certificados y métodos constructivos de primer nivel que cumplen estrictamente con los más altos estándares internacionales.</p>
-                </div>
-            </div>
-
-        </div>
+    <div class="producto-card">
+        <img src="slclc.jpeg" alt="Libro">
+        <h3>Si lo crees lo creas</h3>
+        <p>$180.00</p>
+        <a href="producto2.html" class="btn-ver">Ver producto</a>
     </div>
+    <div class="producto-card">
+        <img src="lmqd.jpeg" alt="Libro">
+        <h3>Las mujeres que aman...</h3>
+        <p>$180.00</p>
+        <a href="producto3.html" class="btn-ver">Ver producto</a>
+    </div>
+    <div class="producto-card">
+        <img src="querida.jpeg" alt="Libro">
+        <h3>Querida yo: tenemos que...</h3>
+        <p>$180.00</p>
+        <a href="producto4.html" class="btn-ver">Ver producto</a>
+    </div>
+</div>
 
+<!-- SECCIÓN: ENTRADAS DE PRODUCTOS GRID 2 -->
+<div class="productos-grid">
+    <div class="producto-card">
+        <img src="cuidate.jpeg" alt="Cuídate para crecer">
+        <h3>Cuídate para crecer – Ana Pérez</h3>
+        <p>$180.00</p>
+        <a href="producto5.html" class="btn-ver">Ver producto</a>
+    </div>
+    <div class="producto-card">
+        <img src="placebo.jpeg" alt="El placebo eres tú">
+        <h3>El placebo eres tú – Joe Dispenza</h3>
+        <p>$190.00</p>
+        <a href="producto6.html" class="btn-ver">Ver producto</a>
+    </div>
+    <div class="producto-card">
+        <img src="ahora.jpeg" alt="El poder del ahora">
+        <h3>El poder del ahora – Eckhart Tolle</h3>
+        <p>$180.00</p>
+        <a href="producto7.html" class="btn-ver">Ver producto</a>
+    </div>
+    <div class="producto-card">
+        <img src="teoria.jpeg" alt="La teoría Let Them">
+        <h3>La teoría Let Them – Mel Robbins</h3>
+        <p>$180.00</p>
+        <a href="producto8.html" class="btn-ver">Ver producto</a>
+    </div>
+</div>
+
+<!-- SECCIÓN: MISIÓN Y VISIÓN (ANTES DEL FOOTER) -->
+<section class="mision-vision-container">
+    <div class="mision-vision-card">
+        <h2>Misión</h2>
+        <p>Facilitar el acceso a lecturas nuevas y transformadoras que inspiren el desarrollo personal y el entretenimiento. Nos dedicamos a conectar a cada lector con historias seleccionadas de calidad, brindando una experiencia cercana, accesible y apasionada por los libros.</p>
+    </div>
+    <div class="mision-vision-card">
+        <h2>Visión</h2>
+        <p>Convertirnos en la librería de referencia para los amantes de la lectura, reconocidos por la curaduría de nuestro catálogo y el valor que entregamos a nuestra comunidad. Buscamos expandir el hábito lector construyendo lazos de confianza y recompensando la fidelidad de quienes eligen crecer con nosotros.</p>
+    </div>
 </section>
-</body>
-<style>
-    /* --- PIE DE PÁGINA (FOOTER REVOLUCIONADO) --- */
-    .main-footer {
-        background-color: #111111; /* Fondo oscuro premium */
-        color: #ffffff;
-        padding: 60px 8% 30px 8%;
-        font-size: 0.9rem;
-    }
 
-    .footer-container {
-        display: flex;
-        justify-content: space-between;
-        gap: 40px;
-        flex-wrap: wrap;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        padding-bottom: 40px;
-    }
-
-    .footer-column {
-        flex: 1;
-        min-width: 250px;
-    }
-
-    /* Columna 1: Marca y Redes */
-    .footer-brand h3 {
-        font-size: 1.3rem;
-        font-weight: 700;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        margin-bottom: 15px;
-        color: #ffffff;
-    }
-
-    .footer-brand p {
-        color: #aaaaaa;
-        line-height: 1.6;
-        font-weight: 300;
-        margin-bottom: 20px;
-    }
-
-    /* Contenedor de Botones Multimedia */
-    .footer-buttons {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-        margin-bottom: 25px;
-    }
-
-    /* Botón Principal: Storytelling con Fondo Sólido */
-    .storytelling-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        background-color: #fcb900; /* Fondo amarillo/dorado corporativo */
-        color: #111111; /* Texto oscuro para contraste */
-        border: 2px solid #fcb900;
-        padding: 10px 20px;
-        font-size: 0.85rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        text-decoration: none;
-        border-radius: 4px;
-        transition: all 0.3s ease;
-    }
-
-    .storytelling-btn i {
-        font-size: 0.9rem;
-        color: #111111;
-    }
-
-    .storytelling-btn:hover {
-        background-color: transparent;
-        color: #ffffff;
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(252, 185, 0, 0.2);
-    }
-
-    .storytelling-btn:hover i {
-        color: #fcb900;
-    }
-
-    /* Botón Secundario: Video 2 */
-    .video2-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        background-color: rgba(255, 255, 255, 0.03);
-        color: #ffffff;
-        border: 2px solid rgba(252, 185, 0, 0.5); /* Borde amarillo translúcido */
-        padding: 10px 20px;
-        font-size: 0.85rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        text-decoration: none;
-        border-radius: 4px;
-        transition: all 0.3s ease;
-    }
-
-    .video2-btn i {
-        font-size: 0.9rem;
-        color: #fcb900;
-    }
-
-    .video2-btn:hover {
-        background-color: #fcb900;
-        color: #111111;
-        border-color: #fcb900;
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(252, 185, 0, 0.2);
-    }
-
-    .video2-btn:hover i {
-        color: #111111;
-    }
-
-    .footer-socials {
-        display: flex;
-        gap: 15px;
-    }
-
-    .social-icon {
-        color: #ffffff;
-        background-color: rgba(255, 255, 255, 0.05);
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .social-icon:hover {
-        background-color: #fcb900;
-        color: #111111;
-        transform: translateY(-3px);
-    }
-
-    /* Columna 2: Contacto Directo */
-    .footer-column h4 {
-        font-size: 1.1rem;
-        font-weight: 700;
-        margin-bottom: 20px;
-        position: relative;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    .footer-column h4::after {
-        content: '';
-        position: absolute;
-        bottom: -6px;
-        left: 0;
-        width: 35px;
-        height: 3px;
-        background-color: #fcb900;
-    }
-
-    .footer-contact-list {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .footer-contact-list li {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        color: #aaaaaa;
-        font-weight: 300;
-    }
-
-    .footer-contact-list li i {
-        color: #fcb900;
-        font-size: 1.1rem;
-        width: 20px;
-    }
-
-    .footer-contact-list li a {
-        color: #aaaaaa;
-        text-decoration: none;
-        transition: color 0.2s ease;
-    }
-
-    .footer-contact-list li a:hover {
-        color: #ffffff;
-    }
-
-    /* Barra de Créditos Inferior */
-    .footer-bottom {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-top: 30px;
-        color: #666666;
-        font-size: 0.8rem;
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-
-    .footer-bottom p a {
-        color: #666666;
-        text-decoration: none;
-        transition: color 0.2s ease;
-    }
-
-    .footer-bottom p a:hover {
-        color: #aaaaaa;
-    }
-
-    /* Responsividad */
-    @media (max-width: 768px) {
-        .footer-container {
-            flex-direction: column;
-            gap: 35px;
-        }
-        .footer-bottom {
-            flex-direction: column;
-            text-align: center;
-        }
-    }
-</style>
-
-<footer class="main-footer">
-    <div class="footer-container">
-        
-        <!-- Columna 1: Marca, Contenedor de Botones y Redes -->
-        <div class="footer-column footer-brand">
-            <h3>Guerrero Construction</h3>
-            <p>Edificando con eficiencia, calidad e innovación soluciones estructurales que trascienden fronteras.</p>
-            
-            <!-- Grupo de botones multimedia -->
-            <div class="footer-buttons">
-                <!-- Botón 1: Storytelling -->
-                <a href="https://youtube.com/shorts/GvijIwn3Lw0?si=8yQnacuIXjS66in_" target="_blank" class="storytelling-btn">
-                    <i class="fa-solid fa-play-circle"></i> Nuestra Historia
-                </a>
-
-                <!-- Botón 2: Video 2 -->
-                <a href="https://youtu.be/D1DANROjWQM?si=mx984kGrR6P_zFEl" target="_blank" class="video2-btn">
-                    <i class="fa-solid fa-video"></i> Video 2
-                </a>
-            </div>
-
-            <div class="footer-socials">
-                <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
-            </div>
-        </div>
-
-        <!-- Columna 2: Contacto Directo -->
-        <div class="footer-column">
-            <h4>Contacto</h4>
-            <ul class="footer-contact-list">
-                <li>
-                    <i class="fa-solid fa-envelope"></i>
-                    <a href="mailto:guerrerosconstructionss@gmail.com">guerrerosconstructionss@gmail.com</a>
-                </li>
-                <li>
-                    <i class="fa-solid fa-phone"></i>
-                    <a href="tel:4492897128">449 289 7128</a>
-                </li>
-                <li>
-                    <i class="fa-solid fa-location-dot"></i>
-                    <span>Aguascalientes, México</span>
-                </li>
-            </ul>
-        </div>
-
+<!-- FOOTER -->
+<footer class="footer-custom-container">
+    <div class="footer-card">
+        <div class="card-title">📍 Puntos de Entrega</div>
+        <p style="font-size: 0.9rem; color: #6e675f;">Consulta en el mapa nuestras zonas y horarios disponibles para recoger tus libros.</p>
+        <a href="https://maps.app.goo.gl/dcQLd8BvRzjVJbkaA?g_st=ac" class="btn-footer" target="_blank">Ver en Google Maps →</a>
     </div>
 
-    <!-- Barra de Créditos Inferior -->
-    <div class="footer-bottom">
-        <p>&copy; 2026 Guerrero Construction. Todos los derechos reservados.</p>
-        <p><a href="privacidad.html">Aviso de Privacidad</a></p>
+    <div class="footer-card">
+        <div class="card-title">🕒 Horario de Atención</div>
+        <div class="horario-row"><span>Lunes a Viernes</span> <span>5:00 pm – 10:00 pm</span></div>
+        <div class="horario-row"><span>Sábado a Domingo</span> <span>2:00 pm – 10:00 pm</span></div>
+    </div>
+
+    <div class="footer-card">
+        <div class="card-title">✨ Sobre Lumi</div>
+        <a href="https://youtube.com/shorts/JKmDFcRutoo?si=3eARbLVBlr-UNNis" class="btn-footer btn-story" target="_blank">Storytelling</a>
+        <a href="https://www.youtube.com/watch?v=7v2hQBkLHAQ" class="btn-footer btn-video" target="_blank">Video</a>
+        <a href="colaboradores.html" class="link-colaboradores">Colaboradores</a>
     </div>
 </footer>
+
+<script>
+    let index = 0;
+    const totalSlides = 4;
+
+    function move(step) {
+        index = (index + step + totalSlides) % totalSlides;
+        update();
+    }
+    function goTo(n) { 
+        index = n; 
+        update(); 
+    }
+    function update() {
+        document.getElementById('inner').style.transform = `translateX(-${index * 100}%)`;
+        document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === index));
+    }
+</script>
+
+</body>
+</html>
